@@ -20,8 +20,12 @@ Route::get('/login', 'View\MemberController@toLogin');
 Route::get('/register', 'View\MemberController@toRegister');
 
 Route::get('/category','View\BookController@toCategory');
+
 Route::get('/product/category_id/{category_id}','View\BookController@toProduct');
 Route::get('/product/{product_id}','View\BookController@toPdtContent');
+
+
+Route::get('/cart','View\CartController@toCart');
 
 Route::group(['prefix'=>'service'],function(){
     Route::get('validate_code/create', 'Service\ValidateController@create');
@@ -31,6 +35,12 @@ Route::group(['prefix'=>'service'],function(){
     Route::post('login', 'Service\MemberController@login');
     Route::get('category/parent_id/{parent_id}', 'Service\BookController@getCategoryByParent');
     Route::get('cart/add/{parent_id}', 'Service\CartController@addCart');
+    Route::get('cart/delete', 'Service\CartController@deleteCart');
+});
+
+
+Route::group(['middleware' => 'check.login'],function(){
+    Route::get('/order_pay', 'View\OrderController@toOrderPay');
 });
 
 
