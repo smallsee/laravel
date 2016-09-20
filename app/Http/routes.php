@@ -40,7 +40,8 @@ Route::group(['prefix'=>'service'],function(){
 
 
 Route::group(['middleware' => 'check.login'],function(){
-    Route::get('/order_pay', 'View\OrderController@toOrderPay');
+    Route::get('/order_commit/{product_ids}', 'View\OrderController@toOrderCommit');
+    Route::get('/order_list', 'View\OrderController@toOrderList');
 });
 
 
