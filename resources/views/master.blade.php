@@ -45,7 +45,10 @@
 <script src="/js/jquery-1.11.2.min.js"></script>
 
 <script src="/js/book.js" charset="utf-8"></script>
+<script src="/dialog/dialog.js"></script>
+<script src="/dialog/layer.js"></script>
 <script type="text/javascript">
+
 function hideActionSheet(weuiActionsheet, mask) {
     weuiActionsheet.removeClass('weui_actionsheet_toggle');
     mask.removeClass('weui_fade_toggle');
