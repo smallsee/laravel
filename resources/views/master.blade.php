@@ -47,6 +47,7 @@
 <script src="/js/book.js" charset="utf-8"></script>
 <script src="/dialog/dialog.js"></script>
 <script src="/dialog/layer.js"></script>
+<script src="/js/uploadFile.js"></script>
 <script type="text/javascript">
 
 function hideActionSheet(weuiActionsheet, mask) {

@@ -26,6 +26,7 @@ Route::get('/product/{product_id}','View\BookController@toPdtContent');
 
 
 Route::get('/cart','View\CartController@toCart');
+Route::get('/file','View\UploadController@toUpload');
 
 Route::group(['prefix'=>'service'],function(){
     Route::get('validate_code/create', 'Service\ValidateController@create');
@@ -36,6 +37,8 @@ Route::group(['prefix'=>'service'],function(){
     Route::get('category/parent_id/{parent_id}', 'Service\BookController@getCategoryByParent');
     Route::get('cart/add/{parent_id}', 'Service\CartController@addCart');
     Route::get('cart/delete', 'Service\CartController@deleteCart');
+    Route::post('upload/{type}', 'Service\UploadController@uploadFile');
+
 });
 
 
@@ -43,5 +46,3 @@ Route::group(['middleware' => 'check.login'],function(){
     Route::get('/order_commit/{product_ids}', 'View\OrderController@toOrderCommit');
     Route::get('/order_list', 'View\OrderController@toOrderList');
 });
-
-
