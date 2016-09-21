@@ -9,6 +9,8 @@ use App\Entity\Product;
 
 class UploadController extends Controller {
 
+
+
 	/**
 	 * @brief 上传文件
 	 */
@@ -22,6 +24,7 @@ class UploadController extends Controller {
 		$m3_result = new M3Result();
 
          $key = uniqid();
+
          $qiniu->uploadFile($_FILES['file']['tmp_name'], $key);
          $cover = $qiniu->getLink($key);
 

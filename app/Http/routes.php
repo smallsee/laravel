@@ -27,6 +27,8 @@ Route::get('/product/{product_id}','View\BookController@toPdtContent');
 
 Route::get('/cart','View\CartController@toCart');
 Route::get('/file','View\UploadController@toUpload');
+Route::any('/baidu','View\UploadController@toA');
+Route::any('/data','View\UploadController@toB');
 
 Route::group(['prefix'=>'service'],function(){
     Route::get('validate_code/create', 'Service\ValidateController@create');
