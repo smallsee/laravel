@@ -27,7 +27,7 @@ function uploadImageToServer(fileElmId, type, id)
 		success: function (data)
 		{
 			var result = JSON.parse(data);
-			$("#"+id).attr("src", result.uri);
+			$("#"+id).attr("src", result.http);
 		},
     error: function (XMLHttpRequest, textStatus, errorThrown) {
       alert(errorThrown);

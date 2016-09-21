@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Tool\UUID;
 use App\Models\M3Result;
+use App\Tool\Qiniu\Qiniu;
+use App\Entity\Product;
 
 class UploadController extends Controller {
 
@@ -12,11 +14,17 @@ class UploadController extends Controller {
 	 */
 	 public function uploadFile(Request $request, $type)
 	 {
+        $qiniu = new Qiniu(Product::AK, Product::SK, Product::DOMAIN, Product::BUCKET);
 
 
 	 	$width = $request->input("width", '');
 		$height = $request->input("height", '');
 		$m3_result = new M3Result();
+
+         $key = uniqid();
+         $qiniu->uploadFile($_FILES['file']['tmp_name'], $key);
+         $cover = $qiniu->getLink($key);
+
 
 		if( $_FILES["file"]["error"] > 0 )
 		{
@@ -26,9 +34,9 @@ class UploadController extends Controller {
 		}
 
     $file_size = $_FILES["file"]["size"];
-		if ( $file_size > 1024*1024) {
+		if ( $file_size > 1024*1024*3) {
 			$m3_result->status = 2;
-			$m3_result->message = "请注意图片上传大小不能超过1M";
+			$m3_result->message = "请注意图片上传大小不能超过3M";
 			return $m3_result->toJson();
 		}
 
@@ -57,6 +65,7 @@ class UploadController extends Controller {
 				$m3_result->status = 0;
 				$m3_result->message = "上传成功";
 				$m3_result->uri = $public_uri;
+                $m3_result->http = $cover;
 			}
 			else
 			{
