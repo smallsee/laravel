@@ -30,7 +30,16 @@
   <textarea name="baidu" id="baidueditor" cols="30" rows="10"></textarea>
 
   <button onclick="uploadBaidu()">上传</button>
+
+
+
+
+
+
+
 </form>
+
+<button onclick="qqLogin()">QQ登录</button>
 
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="/admin/js/uploadFile.js"></script>
@@ -38,6 +47,12 @@
 <script type="text/javascript" src="/admin/lib/kindeditor/kindeditor.js"></script>
 
 <script>
+
+  function qqLogin(){
+    location.href = '/qqlogin'
+  }
+
+
   function uploadBaidu(){
     var parent_id= $('#baidueditor').val();
 

@@ -23,6 +23,12 @@ return [
         'secret' => env('MANDRILL_SECRET'),
     ],
 
+    'wechat' => [
+        'client_id' => 'APP_ID',
+        'client_secret' => 'APP_SECRET',
+        'redirect' => 'CALLBACK_URL'
+    ],
+
     'ses' => [
         'key'    => env('SES_KEY'),
         'secret' => env('SES_SECRET'),

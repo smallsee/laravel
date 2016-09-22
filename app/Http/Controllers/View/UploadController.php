@@ -4,11 +4,29 @@ namespace App\Http\Controllers\View;
 
 use App\Http\Controllers\Controller;
 use App\Models\M3Result;
+use App\Tool\Qiniu\Oauth;
 use Illuminate\Http\Request;
 use App\Tool\UUID;
 use Log;
 
 class UploadController extends Controller{
+
+    public function toQqLogin(){
+        include app_path().'/Tool/Qqlogin/qqConnectAPI.php';
+        $auth = new \Oauth();
+        $accessToken = $auth->qq_callback();
+        $openid = $auth->get_openid();
+        $qc = new \QC($accessToken, $openid);
+        $userinfo = $qc->get_user_info();
+        dd($userinfo);
+        exit;
+    }
+
+    public function toQq(){
+        include app_path().'/Tool/Qqlogin/qqConnectAPI.php';
+        $qc = new \QC();
+       $qc->qq_login();
+    }
 
     public function toA(Request $request){
         $a = $_FILES['imgFile'];

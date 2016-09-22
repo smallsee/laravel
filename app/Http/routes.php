@@ -12,9 +12,6 @@
 */
 use App\Entity\Member;
 
-Route::get('/', function () {
-    return view('login');
-});
 
 Route::get('/login', 'View\MemberController@toLogin');
 Route::get('/register', 'View\MemberController@toRegister');
@@ -29,6 +26,19 @@ Route::get('/cart','View\CartController@toCart');
 Route::get('/file','View\UploadController@toUpload');
 Route::any('/baidu','View\UploadController@toA');
 Route::any('/data','View\UploadController@toB');
+
+Route::any('/qq/qqcallback','View\UploadController@toQqLogin');
+Route::any('/qqlogin','View\UploadController@toQq');
+Route::get('/wechat', function () {
+    return Socialite::driver('wechat')->redirect();
+});
+Route::get('callback', function () {
+    $user = Socialite::driver('wechat')->user();
+    dd($user);
+});
+
+
+
 
 Route::group(['prefix'=>'service'],function(){
     Route::get('validate_code/create', 'Service\ValidateController@create');
