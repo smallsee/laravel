@@ -11,11 +11,17 @@ use Log;
 
 class UploadController extends Controller{
 
+    public function toMap(){
+        return view('map');
+    }
+
     public function toQqLogin(){
         include app_path().'/Tool/Qqlogin/qqConnectAPI.php';
         $auth = new \Oauth();
         $accessToken = $auth->qq_callback();
         $openid = $auth->get_openid();
+        var_dump($openid);
+        var_dump('--------');
         $qc = new \QC($accessToken, $openid);
         $userinfo = $qc->get_user_info();
         dd($userinfo);
@@ -61,8 +67,8 @@ class UploadController extends Controller{
     public function toB(Request $request){
        $a =  $request->input('parent_id','');
 
-        var_dump($a);
-        return;
+        dd($a);
+
 
     }
 

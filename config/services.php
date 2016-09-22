@@ -24,9 +24,9 @@ return [
     ],
 
     'wechat' => [
-        'client_id' => 'APP_ID',
-        'client_secret' => 'APP_SECRET',
-        'redirect' => 'CALLBACK_URL'
+        'client_id' => 'wx9f05425bc52cb233',
+        'client_secret' => '5eda6e891ed091081cb7f1a6fe6b3bc4',
+        'redirect' => 'www.sxlzrc.com/wechat/callback'
     ],
 
     'ses' => [
